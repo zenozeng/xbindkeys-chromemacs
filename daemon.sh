@@ -6,7 +6,7 @@ while [ 1 == 1 ]; do
     if [[ $current_window_class == *google-chrome* ]]
     then
         echo -e "chrome"
-        xbindkeys
+        xbindkeys -fg xbindkeysrc.scm
         ps aux | grep xbindkeys
     else
         echo -e "! chrome"

@@ -6,11 +6,9 @@ Still coding.
 
 ## Requirements
 
-- xbindkeys
+- xbindkeys (with guile enabled)
 
 - xdotool
-
-- xautomation
 
 ## Gtk-key-theme
 
@@ -19,3 +17,5 @@ gsettings set org.gnome.desktop.interface gtk-key-theme "Default"
 ## Ref
 
 - http://askubuntu.com/questions/97213/application-specific-key-combination-remapping
+
+- http://www.nongnu.org/xbindkeys/xbindkeysrc.scm.html
