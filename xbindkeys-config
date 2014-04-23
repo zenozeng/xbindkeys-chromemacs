@@ -9,3 +9,9 @@
 
 "xdotool getwindowfocus key --clearmodifiers Left Arrow"
     control + b
+
+"xdotool getwindowfocus key --clearmodifiers Home"
+    control + a
+
+"xdotool getwindowfocus key --clearmodifiers End"
+    control + e
