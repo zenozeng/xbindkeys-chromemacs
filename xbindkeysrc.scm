@@ -1,3 +1,5 @@
+;; TODO: pause 的 时候要把当前的 mode 记下来
+
 (define (chromemacs)
   "Emacs Keybindings for Chrome"
 
@@ -81,9 +83,20 @@
                          (basic-mode)))
     (grab-all-keys))
 
-  (basic-mode)
+  (define (stop)
+    nil
+    )
+  (define (start)
+    nil
+    )
+  ;; todo: add this to reset-keys
 
-  
+  (xbindkey-function '(control shift F11)
+                     (lambda ()
+                       (display "====================")))
+  (xbindkey-function '(control shift F12)
+                     (lambda ()
+                       (display "========12============")))
   )
 
 (chromemacs)

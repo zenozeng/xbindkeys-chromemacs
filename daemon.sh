@@ -6,11 +6,10 @@ while [ 1 == 1 ]; do
     if [[ $current_window_class == *google-chrome* ]]
     then
         echo -e "chrome"
-        xbindkeys -fg xbindkeysrc.scm
-        ps aux | grep xbindkeys
+        xdotool key --clearmodifiers control+shift+F11
     else
         echo -e "! chrome"
-        ps aux | grep xbindkeys | awk '{print $2}' | xargs kill -9
+        xdotool key --clearmodifiers control+shift+F12
     fi
     sleep 1
 done
