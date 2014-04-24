@@ -6,11 +6,22 @@
 (define (chromemacs)
   "Emacs Keybindings for Chrome"
 
-  (define (set-interval ms handler)
+  (define (set-timeout ms callback)
+    (define main-thread (current-thread))
+    (display main-thread)
+    (display "set-timeout")
     (begin-thread
-     (while #t
-            (usleep (* 1000 ms))
-            (handler))))
+     (usleep (* 1000 ms))
+     (display "sleep done")
+     (system-async-mark callback main-thread)))
+
+  (define (set-interval ms callback)
+    (define interval-callback
+      (lambda ()
+        (display "callback execed")
+        (callback)
+        (set-timeout ms interval-callback)))
+    (set-timeout ms interval-callback))
 
   (define (press key)
     "Ungrab all keys and press key using xdotool, then grab all keys"
@@ -49,8 +60,12 @@
                          (press "Shift+End key --clearmodifiers Delete")))
 
     ;; Search
-    (xbindkey-function '(control s) (lambda () (search-mode)))
-    (xbindkey-function '(control r) (lambda () (search-mode)))
+    (map (lambda (keybinding)
+           (xbindkey-function keybinding
+                              (lambda ()
+                                (press "F3")
+                                (search-mode))))
+         (list '(control r) '(control s)))
 
     ;; C-x Mode
     (xbindkey-function '(control x) (lambda () (control-x-mode)))
@@ -80,6 +95,7 @@
 
   (define (search-mode)
     (reset-keys)
+    (display "chromemacs::search-mode\n")
     (xbindkey-function '(control s)
                        (lambda ()
                          (press "F3")))
@@ -116,3 +132,5 @@
                           (if status (start) (stop))))))))
 
 (chromemacs)
+
+(sleep 1)

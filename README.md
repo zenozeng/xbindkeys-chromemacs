@@ -69,3 +69,5 @@ Still coding.
 - http://www.nongnu.org/xbindkeys/xbindkeysrc.scm.html
 
 - http://www.nongnu.org/xbindkeys/xbindkeysrc-combo.scm.html
+
+- http://community.schemewiki.org/?guile-asyncs-batch-processing
