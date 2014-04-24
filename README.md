@@ -10,10 +10,6 @@ Still coding.
 
 - xdotool
 
-## Gtk-key-theme
-
-`gsettings set org.gnome.desktop.interface gtk-key-theme "Default"`
-
 ## Usage
 
 ### Keymap
@@ -59,6 +55,12 @@ Still coding.
 `C-r`: `Search Backward`
 
 `C-g`: `Exit Search`
+
+## FAQ
+
+### Gtk-key-theme?
+
+`gsettings set org.gnome.desktop.interface gtk-key-theme "Default"`
 
 ## Ref
 
