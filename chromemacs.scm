@@ -1,7 +1,16 @@
 ;; TODO: pause 的 时候要把当前的 mode 记下来
+;; TODO: C-x C-f to open urls
+
+(use-modules (ice-9 popen) (ice-9 rdelim) (ice-9 threads))
 
 (define (chromemacs)
   "Emacs Keybindings for Chrome"
+
+  (define (set-interval ms handler)
+    (begin-thread
+     (while #t
+            (usleep (* 1000 ms))
+            (handler))))
 
   (define (press key)
     "Ungrab all keys and press key using xdotool, then grab all keys"
@@ -83,20 +92,27 @@
                          (basic-mode)))
     (grab-all-keys))
 
-  (define (stop)
-    nil
-    )
-  (define (start)
-    nil
-    )
-  ;; todo: add this to reset-keys
 
-  (xbindkey-function '(control shift F11)
-                     (lambda ()
-                       (display "====================")))
-  (xbindkey-function '(control shift F12)
-                     (lambda ()
-                       (display "========12============")))
-  )
+  (define (start)
+    (basic-mode)
+    (display "chromemacs::start\n"))
+
+  (define (stop)
+    (reset-keys)
+    (display "chromemacs::stop\n"))
+
+  (let ((status #f))
+    (set-interval 500
+                  (lambda ()
+                    (define pipe (open-input-pipe "xprop -id `xdotool getwindowfocus` WM_CLASS"))
+                    (define wm-class (read-line pipe))
+                    (close-pipe pipe)
+                    (if (not (eqv?
+                              status
+                              (not (not (string-contains wm-class "google-chrome"))) ; force to bool
+                              ))
+                        (begin
+                          (set! status (not status))
+                          (if status (start) (stop))))))))
 
 (chromemacs)

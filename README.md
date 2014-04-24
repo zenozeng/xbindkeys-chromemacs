@@ -1,4 +1,4 @@
-# Chrome-mode-map
+# xbindkeys-chromemacs
 
 Emacs keybindings for Chrome / Chromium (for Linux Users)
 
