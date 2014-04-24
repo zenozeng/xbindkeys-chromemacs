@@ -21,19 +21,29 @@ gsettings set org.gnome.desktop.interface gtk-key-theme "Default"
 #### Basic
 
 `C-f`: `Right`
+
 `C-b`: `Left`
+
 `C-n`: `Down`
+
 `C-p`: `Up`
+
 `C-g`: `Escape`
+
 `M-f`: `Forward word`
+
 `M-b`: `Backward word`
+
 `C-a`: `Move beginning of line`
+
 `C-e`: `Move end of line`
 
 #### Cut, Copy & Paste
 
 `C-w`: `Cut`
+
 `M-w`: `Copy`
+
 `C-y`: `Paste`
 
 #### Tab
