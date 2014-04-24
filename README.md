@@ -50,14 +50,20 @@ Still coding.
 
 `C-x k`: `Kill tab`
 
+`C-t`: `New Tab`
+
 #### Search
 
 `C-s`: `Search Forward`
 
 `C-r`: `Search Backward`
 
+`C-g`: `Exit Search`
+
 ## Ref
 
 - http://askubuntu.com/questions/97213/application-specific-key-combination-remapping
 
 - http://www.nongnu.org/xbindkeys/xbindkeysrc.scm.html
+
+- http://www.nongnu.org/xbindkeys/xbindkeysrc-combo.scm.html

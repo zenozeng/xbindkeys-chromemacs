@@ -4,73 +4,75 @@
   (run-command (string-append "xdotool getwindowfocus key --clearmodifiers " key))
   (grab-all-keys))
 
-(define last-key
-  (let ((last-key-value 0))
-    (lambda (operation . values)
-      (case operation
-        ((set) (set! last-key-value (car values)))
-        ((get) last-key-value)))))
+(define (reset-keys)
+  ;; TODO: add global hook
+  (ungrab-all-keys)
+  (remove-all-keys))
 
-(define (bind-key key func)
-  (xbindkey-function key
-                     (lambda ()
-                       (func)
-                       (last-key 'set key))))
+(define (basic-mode)
+  (reset-keys)
 
-(define (bind-keys key1 key2 func-key1-key2 func-key2)
-  "bind keys"
-  (xbindkey-function key1 (lambda ()
-                            (last-key 'set key1)))
-  (xbindkey-function key2 (lambda ()
-                            (if (equal? key1 (last-key 'get))
-                                (func-key1-key2)
-                                (func-key2))
-                            (last-key 'set key2))))
-
-;; New Tab for C-x C-f and Forward char for C-f
-(bind-keys '(control x) '(control f)
-           (lambda ()
-             (press "Control+t"))
-           (lambda ()
-             (press "Right")))
-
-;; C-x k to close tab
-(bind-keys '(control x) '(k)
+  ;; Basic Emacs Keybindings
+  (map (lambda (keymap)
+         (xbindkey-function (car keymap)
                    (lambda ()
-                     (press "Control+w"))
-                   (lambda () nil))
+                     (press (car (cdr keymap))))))
+       (list (list '(control n) "Down")
+             (list '(control p) "Up")
+             (list '(control f) "Right")
+             (list '(control b) "Left")
+             (list '(control a) "Home")
+             (list '(control e) "End")
+             (list '(alt f) "Control+Right") ; forward-char
+             (list '(alt b) "Control+Left") ; backward-char
+             (list '(control g) "Escape")
+             (list '(control w) "Control+x")
+             (list '(alt w) "Control+c")
+             (list '(control y) "Control+v")))
 
-;; Emacs Recursively Search Support
+  (xbindkey-function '(control k)
+                     (lambda ()
+                       (press "Shift+End")
+                       (press "Delete")))
 
-(map (lambda (keymap)
-       (bind-key (car keymap)
-                 (lambda ()
-                   (if (or (equal? '(control s) (last-key 'get))
-                           (equal? '(control r) (last-key 'get)))
-                       (press (car (cdr keymap)))
-                       (press "F3")))))
-     (list (list '(control s) "F3")
-           (list '(control r) "Shift+F3")))
+  ;; Search
+  (xbindkey-function '(control s) (lambda () (search-mode)))
+  (xbindkey-function '(control r) (lambda () (search-mode)))
 
-;; Basic Emacs Keybindings
+  ;; C-x Mode
+  (xbindkey-function '(control x) (lambda () (control-x-mode)))
 
-(map (lambda (keymap)
-       (bind-key (car keymap)
-                 (lambda ()
-                   (press (car (cdr keymap))))))
-     (list (list '(control n) "Down")
-           (list '(control p) "Up")
-           (list '(control f) "Right")
-           (list '(control b) "Left")
-           (list '(control a) "Home")
-           (list '(control e) "End")
-           (list '(alt f) "Control+Right") ; forward-char
-           (list '(alt b) "Control+Left") ; backward-char
-           (list '(control g) "Escape")
-           ;; kill / yank
-           (list '(control w) "Control+x")
-           (list '(alt w) "Control+c")
-           (list '(control y) "Control+v")))
+  (grab-all-keys))
 
-;; TODO: Meta + f => ctrl + left
-;; TODO: control+k => shift+end, delete
+;; Bindings for C-x k, C-x C-c ...
+(define (control-x-mode)
+  (reset-keys)
+  (xbindkey-function 'k
+                     (lambda ()
+                       (press "Control+w")
+                       (basic-mode)))
+  (xbindkey-function '(control c)
+                     (lambda ()
+                       (press "Control+Shift+w")
+                       (basic-mode)))
+  (xbindkey-function '(control g)
+                     (lambda () (basic-mode)))
+  (grab-all-keys))
+
+;; Bindings for Recursively Search
+
+(define (search-mode)
+  (reset-keys)
+  (xbindkey-function '(control s)
+                     (lambda ()
+                       (press "F3")))
+  (xbindkey-function '(control r)
+                     (lambda ()
+                       (press "Shift+F3")))
+  (xbindkey-function '(control g)
+                     (lambda ()
+                       (press "Escape")
+                       (basic-mode)))
+  (grab-all-keys))
+
+(basic-mode)
