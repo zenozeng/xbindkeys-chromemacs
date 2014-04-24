@@ -12,7 +12,7 @@ Still coding.
 
 ## Gtk-key-theme
 
-gsettings set org.gnome.desktop.interface gtk-key-theme "Default"
+`gsettings set org.gnome.desktop.interface gtk-key-theme "Default"`
 
 ## Usage
 
@@ -53,6 +53,8 @@ gsettings set org.gnome.desktop.interface gtk-key-theme "Default"
 #### Search
 
 `C-s`: `Search Forward`
+
+`C-r`: `Search Backward`
 
 ## Ref
 

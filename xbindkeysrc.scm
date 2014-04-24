@@ -48,9 +48,9 @@
                    (if (or (equal? '(control s) (last-key 'get))
                            (equal? '(control r) (last-key 'get)))
                        (press (car (cdr keymap)))
-                       (press "Control+f")))))
-     (list (list '(control s) "Return")
-           (list '(control r) "Up")))
+                       (press "F3")))))
+     (list (list '(control s) "F3")
+           (list '(control r) "Shift+F3")))
 
 ;; Basic Emacs Keybindings
 
