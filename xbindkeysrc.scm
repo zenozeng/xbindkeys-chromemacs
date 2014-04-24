@@ -4,54 +4,72 @@
   (run-command (string-append "xdotool getwindowfocus key --clearmodifiers " key))
   (grab-all-keys))
 
-(define (bind-key-sequence trigger key func)
-  ""
-  (xbindkey-function trigger
+(define last-key
+  (let ((last-key-value 0))
+    (lambda (operation . values)
+      (case operation
+        ((set) (set! last-key-value (car values)))
+        ((get) last-key-value)))))
+
+(define (bind-key key func)
+  (xbindkey-function key
                      (lambda ()
-                       (xbindkey-function
-                        key
-                        (lambda ()
-                          (func)
-                          ;; TODO: if that key exists in orignal map
-                          ;;       restore it.
-                          (remove-xbindkey key))))))
+                       (func)
+                       (last-key 'set key))))
 
-(bind-key-sequence '(control x) '(k)
-                   (lambda ()
-                     (press "Control+w")))
+(define (bind-keys key1 key2 func-key1-key2 func-key2)
+  "bind keys"
+  (xbindkey-function key1 (lambda ()
+                            (last-key 'set key1)))
+  (xbindkey-function key2 (lambda ()
+                            (if (equal? key1 (last-key 'get))
+                                (func-key1-key2)
+                                (func-key2))
+                            (last-key 'set key2))))
 
-(xbindkey-function '(control n)
-                   (lambda ()
-                     (press "Down")))
+;; New Tab for C-x C-f and Forward char for C-f
+(bind-keys '(control x) '(control f)
+           (lambda ()
+             (press "Control+t"))
+           (lambda ()
+             (press "Right")))
 
-(xbindkey-function '(control p)
+;; C-x k to close tab
+(bind-keys '(control x) '(k)
                    (lambda ()
-                     (press "Up")))
+                     (press "Control+w"))
+                   (lambda () nil))
 
-(xbindkey-function '(control f)
-                   (lambda ()
-                     (press "Right")))
+;; Emacs Recursively Search Support
 
-(xbindkey-function '(control b)
-                   (lambda ()
-                     (press "Left")))
+(map (lambda (keymap)
+       (bind-key (car keymap)
+                 (lambda ()
+                   (if (or (equal? '(control s) (last-key 'get))
+                           (equal? '(control r) (last-key 'get)))
+                       (press (car (cdr keymap)))
+                       (press "Control+f")))))
+     (list (list '(control s) "Return")
+           (list '(control r) "Up")))
 
-(xbindkey-function '(control a)
-                   (lambda ()
-                     (press "Home")))
+;; Basic Emacs Keybindings
 
-(xbindkey-function '(control e)
-                   (lambda ()
-                     (press "End")))
+(map (lambda (keymap)
+       (bind-key (car keymap)
+                 (lambda ()
+                   (press (car (cdr keymap))))))
+     (list (list '(control n) "Down")
+           (list '(control p) "Up")
+           (list '(control f) "Right")
+           (list '(control b) "Left")
+           (list '(control a) "Home")
+           (list '(control e) "End")
+           (list '(alt f) "Control+Right") ; forward-char
+           (list '(alt b) "Control+Left") ; backward-char
+           (list '(control g) "Escape")
+           ;; kill / yank
+           (list '(control w) "Control+x")
+           (list '(control y) "Control+v")))
 
-(xbindkey-function '(control s)
-                   (lambda ()
-                     (press "Control+f")))
-
-(xbindkey-function '(control w)
-                   (lambda ()
-                     (press "Control+x")))
-
-(xbindkey-function '(control y)
-                   (lambda ()
-                     (press "Control+v")))
+;; TODO: Meta + f => ctrl + left
+;; TODO: control+k => shift+end, delete
