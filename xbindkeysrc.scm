@@ -69,6 +69,7 @@
            (list '(control g) "Escape")
            ;; kill / yank
            (list '(control w) "Control+x")
+           (list '(alt w) "Control+c")
            (list '(control y) "Control+v")))
 
 ;; TODO: Meta + f => ctrl + left
