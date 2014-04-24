@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# TODO: Optimization
+
 current_window_is_chrome=0
 
 while [ 1 == 1 ]; do

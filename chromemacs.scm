@@ -5,7 +5,6 @@
 
 ;; Global Vars
 
-(define status #f)
 (define mode #f)
 
 (define (chromemacs)
@@ -29,14 +28,13 @@
     ;; Active Key
     (xbindkey-function '(alt shift F12)
                        (lambda ()
-                         (spawn "cat /tmp/chromemacs"
+                         (spawn "xprop -id `xdotool getwindowfocus` WM_CLASS"
                                 (lambda (stdout)
-                                  (if (equal? stdout "start")
-                                      (basic-mode)
-                                      )
-                                  (if (equal? stdout "stop")
-                                      (reset-keys)
-                                      )))))
+                                  (if (string-contains stdout "google-chrome")
+                                      (begin
+                                        (basic-mode))
+                                      (begin
+                                        (reset-keys)))))))
     (grab-all-keys))
 
   (define (basic-mode)
