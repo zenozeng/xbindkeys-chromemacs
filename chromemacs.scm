@@ -3,25 +3,18 @@
 
 (use-modules (ice-9 popen) (ice-9 rdelim) (ice-9 threads))
 
+;; Global Vars
+
+(define status #f)
+(define mode #f)
+
 (define (chromemacs)
   "Emacs Keybindings for Chrome"
 
-  (define (set-timeout ms callback)
-    (define main-thread (current-thread))
-    (display main-thread)
-    (display "set-timeout")
-    (begin-thread
-     (usleep (* 1000 ms))
-     (display "sleep done")
-     (system-async-mark callback main-thread)))
-
-  (define (set-interval ms callback)
-    (define interval-callback
-      (lambda ()
-        (display "callback execed")
-        (callback)
-        (set-timeout ms interval-callback)))
-    (set-timeout ms interval-callback))
+  (define (spawn cmd callback)
+    (define pipe (open-input-pipe cmd))
+    (callback (read-line pipe))
+    (close-pipe pipe))
 
   (define (press key)
     "Ungrab all keys and press key using xdotool, then grab all keys"
@@ -32,7 +25,19 @@
   (define (reset-keys)
     ;; TODO: add global hook
     (ungrab-all-keys)
-    (remove-all-keys))
+    (remove-all-keys)
+    ;; Active Key
+    (xbindkey-function '(alt shift F12)
+                       (lambda ()
+                         (spawn "cat /tmp/chromemacs"
+                                (lambda (stdout)
+                                  (if (equal? stdout "start")
+                                      (basic-mode)
+                                      )
+                                  (if (equal? stdout "stop")
+                                      (reset-keys)
+                                      )))))
+    (grab-all-keys))
 
   (define (basic-mode)
     (reset-keys)
@@ -41,6 +46,7 @@
     (map (lambda (keymap)
            (xbindkey-function (car keymap)
                               (lambda ()
+
                                 (press (car (cdr keymap))))))
          (list (list '(control n) "Down")
                (list '(control p) "Up")
@@ -49,7 +55,7 @@
                (list '(control a) "Home")
                (list '(control e) "End")
                (list '(alt f) "Control+Right") ; forward-char
-               (list '(alt b) "Control+Left") ; backward-char
+               (list '(alt b) "Control+Left")  ; backward-char
                (list '(control g) "Escape")
                (list '(control w) "Control+x")
                (list '(alt w) "Control+c")
@@ -70,6 +76,7 @@
     ;; C-x Mode
     (xbindkey-function '(control x) (lambda () (control-x-mode)))
 
+ 
     (grab-all-keys))
 
   ;; Bindings for C-x k, C-x C-c ...
@@ -95,7 +102,6 @@
 
   (define (search-mode)
     (reset-keys)
-    (display "chromemacs::search-mode\n")
     (xbindkey-function '(control s)
                        (lambda ()
                          (press "F3")))
@@ -109,28 +115,8 @@
     (grab-all-keys))
 
 
-  (define (start)
-    (basic-mode)
-    (display "chromemacs::start\n"))
-
-  (define (stop)
-    (reset-keys)
-    (display "chromemacs::stop\n"))
-
-  (let ((status #f))
-    (set-interval 500
-                  (lambda ()
-                    (define pipe (open-input-pipe "xprop -id `xdotool getwindowfocus` WM_CLASS"))
-                    (define wm-class (read-line pipe))
-                    (close-pipe pipe)
-                    (if (not (eqv?
-                              status
-                              (not (not (string-contains wm-class "google-chrome"))) ; force to bool
-                              ))
-                        (begin
-                          (set! status (not status))
-                          (if status (start) (stop))))))))
+  (reset-keys))
 
 (chromemacs)
 
-(sleep 1)
+
