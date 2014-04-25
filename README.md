@@ -10,7 +10,30 @@ Still coding.
 
 - xdotool
 
+- [dotxbindkeys](https://github.com/zenozeng/dotxbindkeys)
+
+## Install
+
+```
+sudo apt-get install xbindkeys xdotool
+git clone https://github.com/zenozeng/dotxbindkeys.git
+cd dotxbindkeys
+./install.sh
+cd ..
+git clone https://github.com/zenozeng/xbindkeys-chromemacs.git
+cd xbindkeys-chromemacs
+./install.sh
+```
+
 ## Usage
+
+### Start
+
+`dotxbindkeys`
+
+### Debug Mode
+
+`dotxbindkeys -v`
 
 ### Keymap
 
