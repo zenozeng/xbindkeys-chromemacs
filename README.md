@@ -71,6 +71,8 @@ cd xbindkeys-chromemacs
 
 `C-x k`: `Kill tab`
 
+`C-x r`: `Refresh`
+
 `C-t`: `New Tab`
 
 #### Search

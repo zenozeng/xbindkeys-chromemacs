@@ -63,6 +63,10 @@
                        (lambda ()
                          (press "Control+w")
                          (basic-mode)))
+    (xbindkey-function 'r
+                       (lambda ()
+                         (press "F5")
+                         (basic-mode)))
     (xbindkey-function 'h
                        (lambda ()
                          (press "Control+a")
