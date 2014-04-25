@@ -11,17 +11,15 @@ while [ 1 == 1 ]; do
     then
         echo -e "chrome"
         if [ $current_window_is_chrome == 0 ]; then
-            echo -e "send msg"
-            echo "start" > /tmp/chromemacs
-            xdotool key --clearmodifiers alt+shift+F12
+            echo -e "send msg now"
+            dotxbindkeys-send-message "chromemacs::start"
             current_window_is_chrome=1
         fi
     else
         echo -e "! chrome"
         if [ $current_window_is_chrome == 1 ]; then
-            echo -e "send msg"
-            echo "stop" > /tmp/chromemacs
-            xdotool key --clearmodifiers alt+shift+F12
+            echo -e "send msg now"
+            dotxbindkeys-send-message "chromemacs::stop"
             current_window_is_chrome=0
         fi
     fi

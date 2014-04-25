@@ -34,6 +34,8 @@ Still coding.
 
 `C-e`: `Move end of line`
 
+`C-x h`: `Mark all`
+
 #### Cut, Copy & Paste
 
 `C-w`: `Cut`

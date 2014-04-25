@@ -1,40 +1,19 @@
 ;; TODO: pause 的 时候要把当前的 mode 记下来
 ;; TODO: C-x C-f to open urls
 
-(use-modules (ice-9 popen) (ice-9 rdelim) (ice-9 threads))
-
 ;; Global Vars
+
+(use-modules ((ice-9 threads)))
 
 (define mode #f)
 
 (define (chromemacs)
   "Emacs Keybindings for Chrome"
 
-  (define (spawn cmd callback)
-    (define pipe (open-input-pipe cmd))
-    (callback (read-line pipe))
-    (close-pipe pipe))
-
   (define (press key)
     "Ungrab all keys and press key using xdotool, then grab all keys"
     (ungrab-all-keys)
     (run-command (string-append "xdotool getwindowfocus key --clearmodifiers " key))
-    (grab-all-keys))
-
-  (define (reset-keys)
-    ;; TODO: add global hook
-    (ungrab-all-keys)
-    (remove-all-keys)
-    ;; Active Key
-    (xbindkey-function '(alt shift F12)
-                       (lambda ()
-                         (spawn "xprop -id `xdotool getwindowfocus` WM_CLASS"
-                                (lambda (stdout)
-                                  (if (string-contains stdout "google-chrome")
-                                      (begin
-                                        (basic-mode))
-                                      (begin
-                                        (reset-keys)))))))
     (grab-all-keys))
 
   (define (basic-mode)
@@ -112,8 +91,20 @@
                          (basic-mode)))
     (grab-all-keys))
 
+  (add-hook! receive-message-hook
+             (lambda (msg)
+               (display msg)
+               (if (equal? msg "chromemacs::start")
+                   (begin
+                     (basic-mode)))
+               (if (equal? msg "chromemacs::stop")
+                   (begin
+                     (reset-keys)))))
 
-  (reset-keys))
+  (begin-thread
+   (system "~/.dotxbindkeys/bin/chromemacs-daemon"))
+  
+  )
 
 (chromemacs)
 
