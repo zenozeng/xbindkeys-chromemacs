@@ -1,4 +1,4 @@
 (include "share.scm")
-(include "user.scm")
 (include "chromemacs.scm")
+(include "user.scm")
 (reset-keys)

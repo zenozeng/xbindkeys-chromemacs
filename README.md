@@ -82,13 +82,17 @@ curl https://raw.githubusercontent.com/zenozeng/xbindkeys-chromemacs/master/easy
 
 `C-t`: `New Tab`
 
+#### Url
+
+`C-l`: Focus on the address bar
+
 #### Search
 
-`C-s`: `Search Forward`
+`C-s`: Search Forward
 
-`C-r`: `Search Backward`
+`C-r`: Search Backward
 
-`C-g`: `Exit Search`
+`C-g`: Exit Search
 
 ## FAQ
 

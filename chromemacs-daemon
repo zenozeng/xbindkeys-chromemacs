@@ -23,5 +23,5 @@ while [ 1 == 1 ]; do
             current_window_is_chrome=0
         fi
     fi
-    sleep 1
+    sleep 0.5
 done
