@@ -68,6 +68,8 @@ curl https://raw.githubusercontent.com/zenozeng/xbindkeys-chromemacs/master/easy
 
 `C-/`: Revocation
 
+`C-x C-c`: Close Chrome
+
 #### Cut, Copy & Paste
 
 `C-w`: Cut
