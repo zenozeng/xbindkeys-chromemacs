@@ -25,6 +25,13 @@ cd xbindkeys-chromemacs
 ./install.sh
 ```
 
+Or simply
+
+```
+sudo apt-get install xbindkeys xdotool
+curl https://raw.githubusercontent.com/zenozeng/xbindkeys-chromemacs/master/easy-install.sh | bash
+```
+
 ## Usage
 
 ### Start
