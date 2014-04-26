@@ -66,6 +66,8 @@ curl https://raw.githubusercontent.com/zenozeng/xbindkeys-chromemacs/master/easy
 
 `C-x h`: Mark all
 
+`C-/`: Revocation
+
 #### Cut, Copy & Paste
 
 `C-w`: Cut
@@ -74,11 +76,13 @@ curl https://raw.githubusercontent.com/zenozeng/xbindkeys-chromemacs/master/easy
 
 `C-y`: Paste
 
-#### Tab
+#### Tabs
 
 `C-x k`: Kill tab
 
-`C-x r`: Refresh
+`C-x C-r`: Refresh
+
+`C-x r`: Reopen last tab closed (Up to 10 tabs)
 
 `C-t`: New Tab
 

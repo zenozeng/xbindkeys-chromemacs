@@ -1,27 +1,24 @@
 #!/bin/bash
 
-# TODO: Optimization
+# Make sure only one daemon exits
+ps aux | grep chromemacs-daemon | grep `cat /tmp/chromemacs-daemon.pid` | awk '{print $2}' | xargs kill -9
+echo $$ > /tmp/chromemacs-daemon.pid
 
-current_window_is_chrome=0
+last_msg=""
+msg=""
 
 while [ 1 == 1 ]; do
-    current_window=`xdotool getwindowfocus`
-    current_window_class=`xprop -id $((current_window)) WM_CLASS`
+    current_window_class=`xprop -id $(xdotool getwindowfocus) WM_CLASS`
     if [[ $current_window_class == *google-chrome* ]]
     then
-        echo -e "chrome"
-        if [ $current_window_is_chrome == 0 ]; then
-            echo -e "send msg now"
-            dotxbindkeys-send-message "chromemacs::start"
-            current_window_is_chrome=1
-        fi
+        msg="chromemacs::start"
     else
-        echo -e "! chrome"
-        if [ $current_window_is_chrome == 1 ]; then
-            echo -e "send msg now"
-            dotxbindkeys-send-message "chromemacs::stop"
-            current_window_is_chrome=0
-        fi
+        msg="chromemacs::stop"
     fi
+    if [ "$msg" != "$last_msg" ]; then
+        echo -e $msg
+        dotxbindkeys-send-message $msg
+    fi
+    last_msg=$msg
     sleep 0.5
 done

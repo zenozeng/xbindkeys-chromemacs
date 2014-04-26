@@ -1,4 +1,3 @@
 type dotxbindkeys >/dev/null 2>&1 || { echo >&2 "dotxbindkeys not installed, aborting."; exit 1; }
-cp -i init.scm ~/.dotxbindkeys
-yes | cp -f chromemacs.scm ~/.dotxbindkeys
-yes | cp -f chromemacs-daemon ~/.dotxbindkeys/bin/
+mkdir -p ~/.dotxbindkeys/plugins/chromemacs
+cp -f chromemacs.scm chromemacs-daemon ~/.dotxbindkeys/plugins/chromemacs

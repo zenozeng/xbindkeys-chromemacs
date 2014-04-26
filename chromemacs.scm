@@ -32,7 +32,8 @@
                (list '(control g) "Escape")
                (list '(control w) "Control+x")
                (list '(alt w) "Control+c")
-               (list '(control y) "Control+v")))
+               (list '(control y) "Control+v")
+               (list '(control slash) "Control+z")))
 
     (xbindkey-function '(control k)
                        (lambda ()
@@ -61,7 +62,7 @@
                          (basic-mode)))
     (xbindkey-function 'r
                        (lambda ()
-                         (press "F5")
+                         (press "Control+Shift+t")
                          (basic-mode)))
     (xbindkey-function 'b
                        (lambda ()
@@ -103,6 +104,10 @@
                        (lambda ()
                          (press "Escape")
                          (basic-mode)))
+    (xbindkey-function '(Escape)
+                       (lambda ()
+                         (press "Escape")
+                         (basic-mode)))
     (grab-all-keys))
 
   (add-hook! receive-message-hook
@@ -116,7 +121,7 @@
                      (reset-keys)))))
 
   (begin-thread
-   (system "~/.dotxbindkeys/bin/chromemacs-daemon"))
+   (system "~/.dotxbindkeys/plugins/chromemacs/chromemacs-daemon"))
   
   )
 
