@@ -31,6 +31,8 @@
                (list '(control b) "Left")
                (list '(control a) "Home")
                (list '(control e) "End")
+               (list '(control v) "Next") ; PgDn
+               (list '(alt v) "Prior") ; PgUp
                (list '(alt f) "Control+Right") ; forward-char
                (list '(alt b) "Control+Left")  ; backward-char
                (list '(control g) "Escape")
