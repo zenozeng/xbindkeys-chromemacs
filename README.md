@@ -46,41 +46,51 @@ curl https://raw.githubusercontent.com/zenozeng/xbindkeys-chromemacs/master/easy
 
 #### Basic
 
-`C-f`: `Right`
+`C-f`: Right
 
-`C-b`: `Left`
+`C-b`: Left
 
-`C-n`: `Down`
+`C-n`: Down
 
-`C-p`: `Up`
+`C-p`: Up
 
-`C-g`: `Escape`
+`C-g`: Escape
 
-`M-f`: `Forward word`
+`M-f`: Forward word
 
-`M-b`: `Backward word`
+`M-b`: Backward word
 
-`C-a`: `Move beginning of line`
+`C-a`: Move beginning of line
 
-`C-e`: `Move end of line`
+`C-e`: Move end of line
 
-`C-x h`: `Mark all`
+`C-x h`: Mark all
 
 #### Cut, Copy & Paste
 
-`C-w`: `Cut`
+`C-w`: Cut
 
-`M-w`: `Copy`
+`M-w`: Copy
 
-`C-y`: `Paste`
+`C-y`: Paste
 
 #### Tab
 
-`C-x k`: `Kill tab`
+`C-x k`: Kill tab
 
-`C-x r`: `Refresh`
+`C-x r`: Refresh
 
-`C-t`: `New Tab`
+`C-t`: New Tab
+
+#### ido-tab Mode
+
+`C-x b`: Enter ido-tab mode
+
+`C-s`: Next Tab
+
+`C-r`: Prev Tab
+
+`C-g`: Exit ido-tab mode
 
 #### Url
 

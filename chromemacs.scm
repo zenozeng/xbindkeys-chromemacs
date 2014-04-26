@@ -63,6 +63,9 @@
                        (lambda ()
                          (press "F5")
                          (basic-mode)))
+    (xbindkey-function 'b
+                       (lambda ()
+                         (ido-tab-mode)))
     (xbindkey-function 'h
                        (lambda ()
                          (press "Control+a")
@@ -75,7 +78,18 @@
                        (lambda () (basic-mode)))
     (grab-all-keys))
 
-  ;; Bindings for Recursively Search
+  (define (ido-tab-mode)
+    (reset-keys)
+    (xbindkey-function '(control s)
+                       (lambda ()
+                         (press "Control+Tab")))
+    (xbindkey-function '(control r)
+                       (lambda ()
+                         (press "Control+Shift+Tab")))
+    (xbindkey-function '(control g)
+                       (lambda ()
+                         (basic-mode)))
+    (grab-all-keys))
 
   (define (search-mode)
     (reset-keys)
