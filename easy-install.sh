@@ -7,8 +7,8 @@ mkdir -p xbindkeys-chromemacs-easy-install
 cd xbindkeys-chromemacs-easy-install
 git clone https://github.com/zenozeng/dotxbindkeys.git
 cd dotxbindkeys
-yes | ./install.sh
+./install.sh
 cd ..
 git clone https://github.com/zenozeng/xbindkeys-chromemacs.git
 cd xbindkeys-chromemacs
-yes | ./install.sh
+./install.sh

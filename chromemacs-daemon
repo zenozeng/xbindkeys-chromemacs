@@ -1,7 +1,10 @@
 #!/bin/bash
 
 # Make sure only one daemon exits
-ps aux | grep chromemacs-daemon | grep `cat /tmp/chromemacs-daemon.pid` | awk '{print $2}' | xargs kill -9
+if [ -e "/tmp/chromemacs-daemon.pid" ]
+then
+    ps aux | grep chromemacs-daemon | grep `cat /tmp/chromemacs-daemon.pid` | awk '{print $2}' | xargs kill -9
+fi
 echo $$ > /tmp/chromemacs-daemon.pid
 
 last_msg=""

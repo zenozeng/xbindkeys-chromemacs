@@ -1,2 +1,2 @@
 ./install.sh
-dotxbindkeys -v
+xbindkeys -v
