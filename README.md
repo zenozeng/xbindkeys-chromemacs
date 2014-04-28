@@ -2,7 +2,7 @@
 
 Emacs keybindings for Chrome / Chromium (for Linux Users)
 
-Version: 0.1.0 (Unstable)
+Version: 0.1.1 (Unstable)
 
 ## Requirements
 
@@ -10,7 +10,7 @@ Version: 0.1.0 (Unstable)
 
 - xdotool
 
-- [dotxbindkeys](https://github.com/zenozeng/dotxbindkeys) (v0.1.1)
+- [dotxbindkeys](https://github.com/zenozeng/dotxbindkeys) (v0.1.2+)
 
 ## Install
 
@@ -125,3 +125,7 @@ curl https://raw.githubusercontent.com/zenozeng/xbindkeys-chromemacs/master/easy
 - http://www.nongnu.org/xbindkeys/xbindkeysrc-combo.scm.html
 
 - http://community.schemewiki.org/?guile-asyncs-batch-processing
+
+- https://www.gnu.org/software/guile/docs/docs-1.6/guile-ref/Asyncs.html
+
+- https://www.gnu.org/software/guile/manual/html_node/System-asyncs.html

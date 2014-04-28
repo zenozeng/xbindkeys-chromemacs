@@ -20,7 +20,7 @@ while [ 1 == 1 ]; do
     fi
     if [ "$msg" != "$last_msg" ]; then
         echo -e $msg
-        dotxbindkeys-send-message $msg
+        dotxbindkeys send-message $msg
     fi
     last_msg=$msg
     sleep 0.5
