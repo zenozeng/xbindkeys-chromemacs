@@ -56,6 +56,10 @@ curl https://raw.githubusercontent.com/zenozeng/xbindkeys-chromemacs/master/easy
 
 `C-g`: Escape
 
+`C-d`: Delete char
+
+`M-d`: Delete word
+
 `M-f`: Forward word
 
 `M-b`: Backward word
@@ -129,3 +133,5 @@ curl https://raw.githubusercontent.com/zenozeng/xbindkeys-chromemacs/master/easy
 - https://www.gnu.org/software/guile/docs/docs-1.6/guile-ref/Asyncs.html
 
 - https://www.gnu.org/software/guile/manual/html_node/System-asyncs.html
+
+- http://en.wikipedia.org/wiki/Table\_of\_keyboard_shortcuts

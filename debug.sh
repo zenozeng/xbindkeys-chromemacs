@@ -1,2 +1,2 @@
 ./install.sh
-xbindkeys -v
+dotxbindkeys debug

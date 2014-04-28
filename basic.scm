@@ -10,6 +10,8 @@
            (list '(control a) "Home")
            (list '(control e) "End")
            (list '(control v) "Next") ; PgDn
+           (list '(control d) "Delete")
+           (list '(alt d) "Control+Delete")
            (list '(alt v) "Prior") ; PgUp
            (list '(alt f) "Control+Right") ; forward-char
            (list '(alt b) "Control+Left")  ; backward-char
@@ -22,7 +24,8 @@
 ;; Kill line
 (define-key "chromemacs-basic"
   '(control k)
-  (lambda () (press "Shift+End key --clearmodifiers Delete")))
+  (lambda () (press (list "Shift+End"
+                          "Delete"))))
 
 ;; Enter Search Mode
 (map (lambda (key)
