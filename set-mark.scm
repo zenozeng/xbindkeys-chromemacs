@@ -43,4 +43,5 @@
 (define-key "chromemacs-set-mark"
   '(shift space)
   (lambda ()
-    (chromemacs-keymap 'set "chromemacs-basic")))
+    (run-command "xdotool keyup shift")
+    (chromemacs-keymap 'set-async "chromemacs-basic")))

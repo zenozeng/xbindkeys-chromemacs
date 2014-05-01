@@ -124,10 +124,6 @@ curl https://raw.githubusercontent.com/zenozeng/xbindkeys-chromemacs/master/easy
 
 - http://askubuntu.com/questions/97213/application-specific-key-combination-remapping
 
-- http://www.nongnu.org/xbindkeys/xbindkeysrc.scm.html
-
-- http://www.nongnu.org/xbindkeys/xbindkeysrc-combo.scm.html
-
 - http://community.schemewiki.org/?guile-asyncs-batch-processing
 
 - https://www.gnu.org/software/guile/docs/docs-1.6/guile-ref/Asyncs.html

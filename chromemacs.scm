@@ -8,6 +8,10 @@
          (begin
            (set! current-keymap (car values))
            (set-keymap current-keymap)))
+        ((set-async)
+         (begin
+           (set! current-keymap (car values))
+           (set-keymap-async (car values))))
         ((get) current-keymap)))))
 
 (load "basic.scm")
@@ -18,7 +22,6 @@
 
 (add-hook! receive-message-hook
            (lambda (msg)
-             (display msg)
              (if (equal? msg "chromemacs::start")
                  (chromemacs-keymap 'set (chromemacs-keymap 'get)))
              (if (equal? msg "chromemacs::stop")

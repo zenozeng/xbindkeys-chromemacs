@@ -19,7 +19,6 @@ while [ 1 == 1 ]; do
         msg="chromemacs::stop"
     fi
     if [ "$msg" != "$last_msg" ]; then
-        echo -e $msg
         dotxbindkeys send-message $msg
     fi
     last_msg=$msg
