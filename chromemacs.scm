@@ -1,5 +1,7 @@
 (use-modules ((ice-9 threads)))
 
+(load "config.scm")
+
 (define chromemacs-keymap
   (let ((current-keymap "chromemacs-basic"))
     (lambda (operation . values)

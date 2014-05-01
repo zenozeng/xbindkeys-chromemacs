@@ -2,7 +2,7 @@
 
 Emacs keybindings for Chrome / Chromium (for Linux Users)
 
-Version: 0.1.1 (Unstable)
+Version: 0.1.2 (Unstable)
 
 ## Requirements
 
@@ -10,12 +10,14 @@ Version: 0.1.1 (Unstable)
 
 - xdotool
 
-- [dotxbindkeys](https://github.com/zenozeng/dotxbindkeys) (v0.1.2+)
+- netcat-openbsd
+
+- [dotxbindkeys](https://github.com/zenozeng/dotxbindkeys) (v0.2.1+)
 
 ## Install
 
 ```
-sudo apt-get install xbindkeys xdotool
+sudo apt-get install xbindkeys xdotool netcat-openbsd
 git clone https://github.com/zenozeng/dotxbindkeys.git
 cd dotxbindkeys
 ./install.sh
