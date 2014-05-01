@@ -30,7 +30,7 @@ cd xbindkeys-chromemacs
 Or simply
 
 ```
-sudo apt-get install xbindkeys xdotool
+sudo apt-get install xbindkeys xdotool netcat-openbsd
 curl https://raw.githubusercontent.com/zenozeng/xbindkeys-chromemacs/master/easy-install.sh | bash
 ```
 

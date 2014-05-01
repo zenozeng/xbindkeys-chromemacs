@@ -16,11 +16,11 @@
            (set-keymap-async (car values))))
         ((get) current-keymap)))))
 
-(load "basic.scm")
-(load "control-x.scm")
-(load "ido-tab.scm")
-(load "search.scm")
-(load "set-mark.scm")
+(load "modes/basic.scm")
+(load "modes/control-x.scm")
+(load "modes/ido-tab.scm")
+(load "modes/search.scm")
+(load "modes/set-mark.scm")
 
 (add-hook! receive-message-hook
            (lambda (msg)
