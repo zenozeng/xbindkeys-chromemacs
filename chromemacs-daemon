@@ -11,16 +11,24 @@ last_msg=""
 msg=""
 
 while [ 1 == 1 ]; do
-    current_window_class=`xprop -id $(xdotool getwindowfocus) WM_CLASS`
-    if [[ $current_window_class == *google-chrome* ]]
-    then
-        msg="chromemacs::start"
+
+    ps cax | grep " xbindkeys" > /dev/null
+    if [ $? -eq 0 ]; then
+        current_window_class=`xprop -id $(xdotool getwindowfocus) WM_CLASS`
+        if [[ $current_window_class == *google-chrome* ]]
+        then
+            msg="chromemacs::start"
+        else
+            msg="chromemacs::stop"
+        fi
+        if [ "$msg" != "$last_msg" ]; then
+            dotxbindkeys send-message $msg
+        fi
+        last_msg=$msg
+        sleep 0.2
     else
-        msg="chromemacs::stop"
+        echo "chromemacs-daemon> xbindkeys is not running. Exit now. "
+        exit 0
     fi
-    if [ "$msg" != "$last_msg" ]; then
-        dotxbindkeys send-message $msg
-    fi
-    last_msg=$msg
-    sleep 0.2
+
 done
