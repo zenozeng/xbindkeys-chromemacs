@@ -40,8 +40,23 @@
     (press "Right")
     (chromemacs-keymap 'set "chromemacs-basic")))
 
+(define chromemacs-guess-set-mark-key-modifier
+  (map (lambda (key)
+         (cond
+          [(equal? 'control key) "control"]
+          [(equal? 'shift key) "shift"]
+          [(equal? 'alt key) "alt"]))
+       (filter (lambda (key)
+                 (or (equal? 'control key)
+                     (equal? 'shift key)
+                     (equal? 'alt key)))
+               chromemacs-set-mark-key)))
+
 (define-key "chromemacs-set-mark"
-  '(shift space)
+  chromemacs-set-mark-key
   (lambda ()
-    (run-command "xdotool keyup shift")
+    (map (lambda (key)
+           (display (string-append "chromemacs> Release modifier key: " key))
+           (run-command (string-append "xdotool keyup " key)))
+         chromemacs-guess-set-mark-key-modifier)
     (chromemacs-keymap 'set-async "chromemacs-basic")))

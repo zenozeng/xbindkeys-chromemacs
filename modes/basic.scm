@@ -40,5 +40,5 @@
   (lambda () (chromemacs-keymap 'set "chromemacs-control-x")))
 
 ;; Enter set-mark Mode
-(define-key "chromemacs-basic" '(shift space)
+(define-key "chromemacs-basic" chromemacs-set-mark-key
   (lambda () (chromemacs-keymap 'set "chromemacs-set-mark")))

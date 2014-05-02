@@ -1,6 +1,11 @@
 (use-modules ((ice-9 threads)))
 
+;;; Load Config
+
+(define chromemacs-set-mark-key '(control space))
 (load "config.scm")
+
+;;; Load keymaps
 
 (define chromemacs-keymap
   (let ((current-keymap "chromemacs-basic"))
@@ -21,6 +26,8 @@
 (load "modes/ido-tab.scm")
 (load "modes/search.scm")
 (load "modes/set-mark.scm")
+
+;;; Start Daemon
 
 (add-hook! receive-message-hook
            (lambda (msg)
