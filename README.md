@@ -2,7 +2,7 @@
 
 Emacs keybindings for Chrome / Chromium (for Linux Users)
 
-Version: 0.1.2 (Unstable)
+Version: 0.1.3 (Unstable)
 
 ## Requirements
 
@@ -12,7 +12,7 @@ Version: 0.1.2 (Unstable)
 
 - netcat-openbsd
 
-- [dotxbindkeys](https://github.com/zenozeng/dotxbindkeys) (v0.2.1+)
+- [dotxbindkeys](https://github.com/zenozeng/dotxbindkeys) (v0.2.2+)
 
 ## Install
 

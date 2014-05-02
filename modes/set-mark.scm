@@ -40,7 +40,7 @@
     (press "Right")
     (chromemacs-keymap 'set "chromemacs-basic")))
 
-(define chromemacs-guess-set-mark-key-modifier
+(define chromemacs-set-mark-key-modifiers
   (map (lambda (key)
          (cond
           [(equal? 'control key) "control"]
@@ -55,8 +55,5 @@
 (define-key "chromemacs-set-mark"
   chromemacs-set-mark-key
   (lambda ()
-    (map (lambda (key)
-           (display (string-append "chromemacs> Release modifier key: " key))
-           (run-command (string-append "xdotool keyup " key)))
-         chromemacs-guess-set-mark-key-modifier)
+    (keyup chromemacs-set-mark-key-modifiers)
     (chromemacs-keymap 'set-async "chromemacs-basic")))
