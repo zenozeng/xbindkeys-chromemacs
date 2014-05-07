@@ -38,11 +38,11 @@ curl https://raw.githubusercontent.com/zenozeng/xbindkeys-chromemacs/master/easy
 
 ### Start
 
-`dotxbindkeys`
+`dotxbindkeys start`
 
 ### Debug Mode
 
-`dotxbindkeys -v`
+`dotxbindkeys debug`
 
 ### Keymap
 
@@ -94,7 +94,7 @@ curl https://raw.githubusercontent.com/zenozeng/xbindkeys-chromemacs/master/easy
 
 `C-t`: New Tab
 
-#### ido-tab Mode
+#### ido-tab Mode (Early Release)
 
 `C-x b`: Enter ido-tab mode
 
