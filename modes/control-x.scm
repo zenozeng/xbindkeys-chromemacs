@@ -8,6 +8,10 @@
                  (lambda ()
                    (press "Control+Shift+t")
                    (chromemacs-keymap 'set "chromemacs-basic")))
+           (list '(control r)
+                 (lambda ()
+                   (press "Control+r")
+                   (chromemacs-keymap 'set-async "chromemacs-basic")))
            (list 'b
                  (lambda ()
                    (chromemacs-keymap 'set "chromemacs-ido-tab")))
