@@ -1,5 +1,7 @@
 # xbindkeys-chromemacs
 
+__Note: This repository is no longer maintained. I think use xbindkeys doing this job is very dirty and I may write another emacs keybinding for chrome using python3-keybinder later.__
+
 Emacs keybindings for Chrome / Chromium (for Linux Users)
 
 Version: 0.1.3 (Unstable)
