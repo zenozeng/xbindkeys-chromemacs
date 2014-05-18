@@ -20,7 +20,7 @@ Version: 0.1.3 (Unstable)
 sudo apt-get install xbindkeys xdotool netcat-openbsd
 git clone https://github.com/zenozeng/dotxbindkeys.git
 cd dotxbindkeys
-./install.sh
+sudo ./install.sh
 cd ..
 git clone https://github.com/zenozeng/xbindkeys-chromemacs.git
 cd xbindkeys-chromemacs
