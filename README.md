@@ -44,6 +44,10 @@ curl https://raw.githubusercontent.com/zenozeng/xbindkeys-chromemacs/master/easy
 
 `dotxbindkeys debug`
 
+### Automatically start at start up
+
+put `dotxbindkeys start` in your ~/.profile
+
 ### Keymap
 
 #### Basic
